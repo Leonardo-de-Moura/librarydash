@@ -1,7 +1,12 @@
 from flask import Flask
+from flask import request
+from markupsafe import escape
 
 app= Flask(__name__)
 
-@app.route("/")
+@app.route("/hello")
 def init():
-	return 0;
+	name= request.args.get("name", "flask")
+	return f"hello, {escape(name)}!"
+
+
